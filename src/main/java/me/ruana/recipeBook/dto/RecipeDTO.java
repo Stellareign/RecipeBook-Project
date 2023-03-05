@@ -5,7 +5,7 @@ import me.ruana.recipeBook.model.Recipe;
 
 import java.util.List;
 
-public class RecipeDTO {
+public class RecipeDTO { // файл типа json
     private final String title;
     private final int cookingTime;
     private final String measureTime;
