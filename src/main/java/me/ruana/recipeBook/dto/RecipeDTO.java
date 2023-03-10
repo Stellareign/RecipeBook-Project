@@ -26,7 +26,7 @@ public class RecipeDTO { // файл типа json
         return title;
     }
 
-   public int getCookingTime() {
+    public int getCookingTime() {
         return cookingTime;
     }
 
@@ -46,15 +46,16 @@ public class RecipeDTO { // файл типа json
         return measureTime;
     }
 
+
     public static RecipeDTO from(int id, Recipe recipe) { // "статическая фабрика - создание DTO из заданных "компонентов"
-        return new RecipeDTO (id, recipe.getTitle(), recipe.getCookingTime(), recipe.getMeasureTime(), recipe.getIngredientsList(),
+        return new RecipeDTO(id, recipe.getTitle(), recipe.getCookingTime(), recipe.getMeasureTime(), recipe.getIngredientsList(),
                 recipe.getCookingStepsList());
     }
 
     @Override
     public String toString() {
         return id + "." + "Рецепт приготовления: " +
-                 title + "."+
+                title + "." +
                 "\n Время приготовленич" + cookingTime + " " + measureTime +
                 "\n Ингредиенты: " + ingredientsList +
                 "Шаги приготовления: " + cookingStepsList;

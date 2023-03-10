@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Recipe {
     private String title;
     private int cookingTime;
-    private final String measureTime;
+    private  String measureTime;
     private  List<Ingredients> ingredientsList;
     private  List<String> cookingStepsList;
 
@@ -59,6 +59,11 @@ public class Recipe {
         return measureTime;
     }
 
+    public Recipe setMeasureTime(String measureTime) {
+        this.measureTime = measureTime;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,4 +84,6 @@ public class Recipe {
                 "\n Ингредиенты: " + ingredientsList +
                 "\n Шаги приготовления: " + cookingStepsList;
     }
+
+
 }

@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Ingredients {
     private String ingredientName;
-    private int numberOfIngredients;
+    private double numberOfIngredients;
     private String measureUnits;
 
-    public Ingredients(String ingredientName, int numberOfIngredients, String measureUnits) {
+    public Ingredients(String ingredientName, double numberOfIngredients, String measureUnits) {
         this.ingredientName = ingredientName;
         this.numberOfIngredients = numberOfIngredients;
         this.measureUnits = measureUnits;
@@ -17,7 +17,7 @@ public class Ingredients {
         return ingredientName;
     }
 
-    public int getNumberOfIngredients() {
+    public double getNumberOfIngredients() {
         return numberOfIngredients;
     }
 
@@ -30,7 +30,7 @@ public class Ingredients {
         return this;
     }
 
-    public Ingredients setNumberOfIngredients(int numberOfIngredients) {
+    public Ingredients setNumberOfIngredients(double numberOfIngredients) {
         this.numberOfIngredients = numberOfIngredients;
         return this;
     }
@@ -54,7 +54,7 @@ public class Ingredients {
 
     @Override
     public String toString() {
-        return  "\n Наименование: " + ingredientName +
-                "\n Количество: " + numberOfIngredients +" " + measureUnits;
+        return "\n Наименование: " + ingredientName +
+                "\n Количество: " + numberOfIngredients + " " + measureUnits;
     }
 }
