@@ -56,7 +56,7 @@ public class RecipeDTO { // файл типа json
     public String toString() {
         return id + "." + "Рецепт приготовления: " +
                 title + "." +
-                "\n Время приготовленич" + cookingTime + " " + measureTime +
+                "\n Время приготовления" + cookingTime + " " + measureTime +
                 "\n Ингредиенты: " + ingredientsList +
                 "Шаги приготовления: " + cookingStepsList;
     }

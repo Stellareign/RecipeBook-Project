@@ -3,6 +3,7 @@ package me.ruana.recipeBook.controllers;
 import me.ruana.recipeBook.dto.IngredientsDTO;
 import me.ruana.recipeBook.model.Ingredients;
 import me.ruana.recipeBook.services.IngredientsService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -18,31 +19,36 @@ public class IngredientsController {
 
     // ПОЛУЧЕНИЕ ИНГРЕДИЕНТА ПО ID:
     @GetMapping("/{id}")
-    public IngredientsDTO getIndredient(@PathVariable("id") int id) {
-        return ingredientsService.getIngredient(id);
+    public ResponseEntity <IngredientsDTO> getIndredient(@PathVariable("id") int id) {
+        IngredientsDTO ingredientsDTO =  ingredientsService.getIngredient(id);
+        return ResponseEntity.ok().body(ingredientsDTO);
     }
 
     // ДОБАВЛЕНИЕ ИНГРЕДИЕНТА В СПИСОК:
     @PostMapping
-    public IngredientsDTO addIngredient(@RequestBody Ingredients ingredient) {
-        return ingredientsService.addIngredientToMap(ingredient);
+    public ResponseEntity <IngredientsDTO> addIngredient(@RequestBody Ingredients ingredient) {
+        IngredientsDTO ingredientsDTO = ingredientsService.addIngredientToMap(ingredient);
+        return ResponseEntity.ok().body(ingredientsDTO);
     }
 
     // ПРАВКА ИНГРЕДИЕНТА ПО ID:
-    @PutMapping("/edit/{id}")
-    public IngredientsDTO changeIngredient(@PathVariable("id") int id, @RequestBody Ingredients ingredient) {
-        return ingredientsService.editIngredient(id, ingredient);
+    @PutMapping("/{id}")
+    public ResponseEntity <IngredientsDTO> changeIngredient(@PathVariable("id") int id, @RequestBody Ingredients ingredient) {
+        IngredientsDTO ingredientsDTO = ingredientsService.editIngredient(id, ingredient);
+        return ResponseEntity.ok().body(ingredientsDTO);
     }
 
     // УДАЛЕНИЕ ИНГРЕДИЕНТА ПО ID:
-    @DeleteMapping("/delete/{id}")
-    public Map<Integer, Ingredients> deleteIngredient(@PathVariable("id") int id) {
-        return ingredientsService.deleteIngredient(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity <?> deleteIngredient(@PathVariable("id") int id) {
+        var allIngredientsMap = ingredientsService.deleteIngredient(id);
+        return ResponseEntity.ok().body(allIngredientsMap);
     }
 
     // СПИСОК ИНГРЕДИЕНТОВ:
     @GetMapping
-    public Map<Integer, Ingredients> getIngredientsList() {
-        return ingredientsService.getIngredientsMap();
+    public ResponseEntity <Map<Integer, Ingredients>> getIngredientsList() {
+        var allIngredientsMap = ingredientsService.getIngredientsMap();
+        return ResponseEntity.ok().body(allIngredientsMap);
     }
 }
