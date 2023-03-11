@@ -4,6 +4,7 @@ import me.ruana.recipeBook.dto.RecipeDTO;
 import me.ruana.recipeBook.model.Recipe;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +54,8 @@ public class RecipeService {
 
     // ПОЛУЧЕНИЕ СПИСКА РЕЦЕПТОВ:
     public Map<Integer, Recipe> getRecipeMap() {
-        return recipeMap;
+        if (recipeMap.isEmpty()) {
+            throw new ResolutionException("Книга рецептов пуста!");
+        } else return recipeMap;
     }
 }

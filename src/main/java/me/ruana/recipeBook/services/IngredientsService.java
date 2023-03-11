@@ -4,6 +4,7 @@ import me.ruana.recipeBook.dto.IngredientsDTO;
 import me.ruana.recipeBook.model.Ingredients;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,9 @@ public class IngredientsService {
 
     // ВСЕ ИНГРЕДИЕНТЫ:
     public Map<Integer, Ingredients> getIngredientsMap() {
-        return ingredientsMap;
+        if (ingredientsMap.isEmpty()) {
+            throw new ResolutionException("Список ингредиентов пуст!");
+        }return ingredientsMap;
     }
 
     // РЕДАКТИРОВАНИЕ ИНГРЕДИЕНТА:

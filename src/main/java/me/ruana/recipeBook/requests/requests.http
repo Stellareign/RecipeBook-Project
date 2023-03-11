@@ -1,0 +1,138 @@
+GET http://localhost:8080
+###
+GET http://localhost:8080/info
+
+<!-- ----------------------------РЕЦЕПТЫ: ----------------------------------->
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{"title": "Хлебные тосты",
+  "cookingTime": 10,
+  "measureTime": "мин.",
+  "ingredientsList": [{
+    "ingredientName": "Хлеб",
+    "numberOfIngredients": 4,
+    "measureUnits": "кусков"
+  },
+    {
+      "ingredientName": "Масло сливочное",
+      "numberOfIngredients": 10,
+      "measureUnits": "грамм"
+    }],
+  "cookingStepsList": [
+    "1. Отрезать 4 куска хлеба",
+    "2. Положить хлеб в тостер",
+    "3. Выбрать степень поджарки",
+    "4. Нажать кнопку",
+    "5. Подождать, пока тостер готовит",
+    "6. Намажьте тост маслом",
+    "7. Ммм! Приятного аппетита!"
+  ]
+}
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{"title": "Яичница-глазунья",
+  "cookingTime": 8,
+  "measureTime": "мин.",
+  "ingredientsList": [{
+    "ingredientName": "Яйцо куриное",
+    "numberOfIngredients": 2,
+    "measureUnits": "шт"
+  },
+    {
+      "ingredientName": "Масло сливочное",
+      "numberOfIngredients": 10,
+      "measureUnits": "грамм"
+    }],
+  "cookingStepsList": [
+    "1. Поставьте на огонь сковороду",
+    "2. Растопите масло на сковороде",
+    "3. Аккуратно, не повреждая желтки, разбейте яйца в сковороду",
+    "4. Посолите по вкусу",
+    "5. Жарьте до готовности",
+    "6. Выключите огонь",
+    "7. Аккуратно выложите яичницу на тарелку!",
+    "8. Приятного аппетита!"
+  ]
+}
+###
+GET http://localhost:8080/recipe/0
+###
+GET http://localhost:8080/recipe/2
+###
+PUT http://localhost:8080/recipe/0
+Content-Type: application/json
+
+{
+  "title": "ТЕСТ",
+  "cookingTime": 45,
+  "measureTime": "ч.",
+  "ingredientsList": [
+    {
+      "ingredientName": "Тест",
+      "numberOfIngredients": 7,
+      "measureUnits": "шт."
+    },
+    {
+      "ingredientName": "Масло подсолнечное",
+      "numberOfIngredients": 10,
+      "measureUnits": "мл"
+    }
+  ],
+  "cookingStepsList": [
+    "1. Отрезать тест",
+    "2. Положить тест в тостер",
+    "3. ***",
+    "4. Нажать кнопку",
+    "5. Подождать, пока тостер готовит",
+    "6. Намажьте тест маслом",
+    "7. Тест! Приятного аппетита!"
+  ],
+  "id": 0
+}
+###
+
+DELETE http://localhost:8080/recipe/1
+###
+GET http://localhost:8080/recipe
+
+
+<!-- --------------------------------------- ИНГРЕДИЕНТЫ: ----------------------------------------->
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "ingredientName": "Яйцо куриное",
+  "numberOfIngredients": 2,
+  "measureUnits": "шт."
+}
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "ingredientName": "Вода",
+  "numberOfIngredients": 250,
+  "measureUnits": "мл"
+}
+###
+GET http://localhost:8080/ingredients/3
+###
+PUT http://localhost:8080/ingredients/1
+Content-Type: application/json
+
+{
+  "ingredientName": "Соль",
+  "numberOfIngredients": 0.5,
+  "measureUnits": "ч.л."
+}
+###
+DELETE http://localhost:8080/ingredients/0
+###
+GET http://localhost:8080/ingredients
+###
+GET  http://localhost:8080/swagger-ui.html
