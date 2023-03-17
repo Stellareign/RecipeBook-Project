@@ -1,5 +1,7 @@
 package me.ruana.recipeBook.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,10 +14,12 @@ import java.util.List;
 public class RecipeDTO { // файл типа json
     private final int id;
     private final String title;
-    private final int cookingTime;
+    private String numberOfServings;
+    private final double cookingTime;
     private final String measureTime;
     private final List<Ingredients> ingredientsList;
     private final List<String> cookingStepsList;
+
 
 
 //    public RecipeDTO(int id, String title, int cookingTime, String measureTime, List<Ingredients> ingredientsList, List<String> cookingStepsList) {
@@ -54,7 +58,7 @@ public class RecipeDTO { // файл типа json
 //
 //
     public static RecipeDTO from(int id, Recipe recipe) { // "статическая фабрика - создание DTO из заданных "компонентов"
-        return new RecipeDTO(id, recipe.getTitle(), recipe.getCookingTime(), recipe.getMeasureTime(), recipe.getIngredientsList(),
+        return new RecipeDTO(id, recipe.getTitle(), recipe.getNumberOfServings(), recipe.getCookingTime(), recipe.getMeasureTime(), recipe.getIngredientsList(),
                 recipe.getCookingStepsList());
     }
 

@@ -2,14 +2,17 @@ package me.ruana.recipeBook.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Objects;
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+
 public class Ingredients {
     private String ingredientName;
     private double numberOfIngredients;
     private String measureUnits;
+
 
 //    public Ingredients(String ingredientName, double numberOfIngredients, String measureUnits) {
 //        this.ingredientName = ingredientName;

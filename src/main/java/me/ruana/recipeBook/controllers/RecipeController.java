@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -104,6 +105,19 @@ public class RecipeController {
     public ResponseEntity <?>  getRecipeList() {
         var allRecipesMap = recipeService.getRecipeMap();
         return ResponseEntity.ok().body(allRecipesMap);
+    }
+
+    //ПОИСК ПО ИНГРЕДИЕНТУ: не рабоатет почему-то.... проверить
+    @GetMapping("/byIngredient/{id}")
+    public ResponseEntity<List<RecipeDTO>> getRecipeByIngredientId(@PathVariable("id")int id){
+        var recipeListByIngredientId = recipeService.getRecipeByIngredientId(id);
+        return ResponseEntity.ok().body(recipeListByIngredientId);
+    }
+
+    @GetMapping("/byIngredients")
+    public ResponseEntity<List<RecipeDTO>> getRecipesByIngredientsIds(@RequestParam("ids") List<Integer> ids) {
+        var recipesListByIngredientsIds = recipeService.getRecipesByIngredientsIds(ids);
+        return ResponseEntity.ok().body(recipesListByIngredientsIds);
     }
 }
 

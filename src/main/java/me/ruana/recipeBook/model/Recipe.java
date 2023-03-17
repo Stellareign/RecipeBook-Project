@@ -1,19 +1,33 @@
 package me.ruana.recipeBook.model;
-
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
+import lombok.*;
 import java.util.List;
-import java.util.Objects;
+
+
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Recipe {
     private String title;
-    private int cookingTime;
+    private String numberOfServings;
+    private double cookingTime;
     private  String measureTime;
     private  List<Ingredients> ingredientsList;
     private  List<String> cookingStepsList;
+
+
+//    @JsonCreator // для запуска метода чтения из файла через десериализацию json в мапу
+//    public Recipe(@JsonProperty("title") String title, @JsonProperty("numberOfServings") String numberOfServings,
+//                  @JsonProperty("cookingTime") double cookingTime, @JsonProperty("measureTime") String measureTime,
+//                  @JsonProperty("ingredientsList") List<Ingredients> ingredientsList, @JsonProperty("cookingStepsList")
+//                  List<String> cookingStepsList) {
+//        this.title = title;
+//        this.numberOfServings = numberOfServings;
+//        this.cookingTime = cookingTime;
+//        this.measureTime = measureTime;
+//        this.ingredientsList = ingredientsList;
+//        this.cookingStepsList = cookingStepsList;
+//    }
+
 
 //    public Recipe(String title, int cookingTime,String measureTime, List<Ingredients> ingredientsList, List<String> cookingStepsList) {
 //        this.title = title;
@@ -91,3 +105,4 @@ public class Recipe {
 
 
 }
+
