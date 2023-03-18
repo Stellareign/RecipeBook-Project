@@ -20,19 +20,17 @@ public class RecipeService {
     private static Map<Integer, Recipe> recipeMap = new HashMap<>();
     final private FileService fileService; // "заинджектили" класс - добавить в конструктор
 
-
     IngredientsService ingredientsService; // создаём для метода получения рецепта по ингредиенту - обязательно создать конструктор!
-
     public RecipeService(FileService fileService, IngredientsService ingredientsService) {
         this.fileService = fileService; // "заинджектили" класс
         this.ingredientsService = ingredientsService;
     }
 
     // МЕТОД, ДЛЯ ВЫЗОВА ФАЙЛА, ХРАНЯЩЕГОСЯ НА ДИСКЕ:
-    @PostConstruct
-    private void foo() {
-        readRecipeFromFile();
-    }
+//    @PostConstruct
+//    private void foo() {
+//        readRecipeFromFile();
+//    }
 
     // ДОБАВЛЕНИЕ РЕЦЕПТА:
     public RecipeDTO addRecipeToMap(Recipe recipe) { // добавление рецепта в мапу

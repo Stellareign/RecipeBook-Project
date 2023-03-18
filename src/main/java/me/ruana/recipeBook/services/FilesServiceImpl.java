@@ -3,6 +3,7 @@ package me.ruana.recipeBook.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +26,7 @@ public class FilesServiceImpl implements FileService {
             Files.writeString(Path.of(dataFilePath, dataFileNameRecipes), json);
             return true;
         } catch (IOException e) {
-            e.printStackTrace(); // добавить везде, где нет сообщения об ошибки для возможности отладки приложения
+            e.printStackTrace(); // добавить везде, где нет сообщения об ошибке для возможности отладки приложения
             return false;
         }
     }
@@ -40,9 +41,9 @@ public class FilesServiceImpl implements FileService {
             throw new RuntimeException(e);
         }
     }
-
+@Override
     // ОЧИСТКА ФАЙЛА:
-    private boolean cleanRecipesDataFile() {
+public boolean cleanRecipesDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameRecipes);
             Files.deleteIfExists(path); // удалить, если существует
@@ -53,6 +54,11 @@ public class FilesServiceImpl implements FileService {
             return false;
         }
     }
+    @Override // первый метод
+    public File getDataFileRecipes() {
+        return new File(dataFilePath, dataFileNameRecipes); //возвращает файл с указанным именем по указанному адресу.
+        //Если файла нет, создаёт указанный файл.
+    }
 
     // МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ.
 // ОЧИСТКА И ПЕРЕЗАПИСЬ ФАЙЛА:
@@ -62,7 +68,7 @@ public class FilesServiceImpl implements FileService {
             Files.writeString(Path.of(dataFilePath, dataFileNameIngredients), json);
             return true;
         } catch (IOException e) {
-            e.printStackTrace(); // добавить везде, где нет сообщения об ошибки для возможности отладки приложения
+            e.printStackTrace(); // добавить везде, где нет сообщения об ошибке для возможности отладки приложения
             return false;
         }
     }
@@ -79,7 +85,8 @@ public class FilesServiceImpl implements FileService {
     }
 
     // ОЧИСТКА ФАЙЛА:
-    private boolean cleanIngredientsDataFile() {
+    @Override
+    public boolean cleanIngredientsDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameIngredients);
             Files.deleteIfExists(path); // удалить, если существует
@@ -90,5 +97,16 @@ public class FilesServiceImpl implements FileService {
             return false;
         }
     }
+    @Override // первый метод
+    public File getDataFileIngredients() {
+        return new File(dataFilePath, dataFileNameIngredients); //возвращает файл с указанным именем по указанному адресу.
+        //Если файла нет, создаёт указанный файл.
+    }
 
+//    @Override // второй метод - не работает :(
+//    public Resource getResource(String fileName) {
+//        Path dataFilesPath = Path.of(dataFilePath); // создаём объект Path из нашей ссылки на директорию для обработки методом resilve()
+//        Path dataPath = dataFilesPath.resolve(fileName + ".json"); // добавляем имя файла и тип к пути к папке
+//        return new FileSystemResource(dataPath); // возвращаем объект типа Resource, который представляет файл
+//    }
 }
