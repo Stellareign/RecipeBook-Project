@@ -24,7 +24,7 @@ public class IngredientsService {
 
 
     //     МЕТОД, ДЛЯ ВЫЗОВА ФАЙЛА, ХРАНЯЩЕГОСЯ НА ДИСКЕ:
-    @PostConstruct
+    @PostConstruct // считывает файл при запуске приложения. Если файла нет - прлжение не запускается.
     private void foo() {
         readIngredientFromFile();
     }
@@ -70,6 +70,7 @@ public class IngredientsService {
         Ingredients ingredient = ingredientsMap.get(ingredientId);
         if (ingredient != null) {
             ingredientsMap.remove(ingredientId);
+            saveIngredientToFile();
         } else throw new IllegalArgumentException("Указанного ингредиенты нет в списке");
         return ingredientsMap;
     }

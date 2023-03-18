@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 public class RecipeService {
     private static int recipeId = 0;
     private static Map<Integer, Recipe> recipeMap = new HashMap<>();
-    final private FileService fileService; // "заинджектили" класс - добавить в конструктор
+    private final FileService fileService; // "заинджектили" класс - добавить в конструктор
 
-    IngredientsService ingredientsService; // создаём для метода получения рецепта по ингредиенту - обязательно создать конструктор!
+    private final IngredientsService ingredientsService; // создаём для метода получения рецепта по ингредиенту - обязательно создать конструктор!
     public RecipeService(FileService fileService, IngredientsService ingredientsService) {
         this.fileService = fileService; // "заинджектили" класс
         this.ingredientsService = ingredientsService;
@@ -67,6 +67,7 @@ public class RecipeService {
         Recipe recipe = recipeMap.get(recipeId);
         if (recipe != null) {
             recipeMap.remove(recipeId);
+            saveRecipeToFile();
             //  System.out.println("Рецепт " + recipeId + " " + recipe.getTitle() + " удалён из книги рецептов.");
         } else throw new IllegalArgumentException("Рецепта с таким ID нет!");
         return recipeMap;
