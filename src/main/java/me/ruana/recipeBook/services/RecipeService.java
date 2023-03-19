@@ -7,6 +7,7 @@ import me.ruana.recipeBook.dto.IngredientsDTO;
 import me.ruana.recipeBook.dto.RecipeDTO;
 import me.ruana.recipeBook.model.Ingredients;
 import me.ruana.recipeBook.model.Recipe;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -29,10 +30,16 @@ public class RecipeService {
     }
 
     // МЕТОД, ДЛЯ ВЫЗОВА ФАЙЛА, ХРАНЯЩЕГОСЯ НА ДИСКЕ:
+    @Value("${path.to.data.file}")
+    private String dataFilePath;
+    @Value("${name.of.data.file1}")
+    private String dataFileNameRecipes;
+
     @PostConstruct
     private void foo() {
-
-        readRecipeFromFile();
+        File file = new File(dataFilePath, dataFileNameRecipes);
+        if (file.exists())
+            readRecipeFromFile();
     }
 
     // ДОБАВЛЕНИЕ РЕЦЕПТА:

@@ -53,7 +53,7 @@ public class FilesController {
                     .contentType(MediaType.APPLICATION_OCTET_STREAM) // заголовок скачивает по ссылке, хотя и по кнопке было норм. - разобраться (vj;yj
                     .contentLength((recipesFile.length())) // заголовок для проверки соответствия размера скачанного файла размеру файла на сервере
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"RecipesDataFile.json\"") // заголовок для загрузки
-                                                                                                                          // файла с нужным именем
+                    // файла с нужным именем
                     .body(resource); // возвращаем файл в теле объекта resource
         } else return ResponseEntity.noContent().build();
     }
@@ -74,7 +74,7 @@ public class FilesController {
         File recipesFile = fileService.getDataFileRecipes(); // получаем объект File из методом getDataFileRecipes() из fileService
         try (FileOutputStream fos = new FileOutputStream(recipesFile)) { // Открываем поток для записи в файл с помощью FileOutputStream
             IOUtils.copy(uploadedRecipesFile.getInputStream(), fos); // Копируем содержимое загруженного файла в
-                                                                     // файл на сервере с помощью метода copy() из библиотеки Apache Commons IO.
+            // файл на сервере с помощью метода copy() из библиотеки Apache Commons IO.
             return ResponseEntity.ok()
                     .build(); // если файл скопирован успешно, сообщаем клиенту, что всё ОК
         } catch (IOException e) {

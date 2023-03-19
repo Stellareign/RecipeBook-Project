@@ -18,7 +18,7 @@ public class FilesServiceImpl implements FileService {
     @Value("${name.of.data.file2}")
     private String dataFileNameIngredients;
 
-    // МЕТОДЫ ДЛЯ РЕЦЕПТОВ.
+    // ======================================================= МЕТОДЫ ДЛЯ РЕЦЕПТОВ: ====================================
     // ОЧИСТКА И ПЕРЕЗАПИСЬ ФАЙЛА:
     @Override
     public boolean saveRecipeToFile(String json) {
@@ -62,7 +62,7 @@ public class FilesServiceImpl implements FileService {
         //Если файла нет, создаёт указанный файл.
     }
 
-    // МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ.
+    //======================================================== МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ: ===================================
 // ОЧИСТКА И ПЕРЕЗАПИСЬ ФАЙЛА:
     @Override
     public boolean saveIngredientToFile(String json) {

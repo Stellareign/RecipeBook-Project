@@ -5,9 +5,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.ruana.recipeBook.dto.IngredientsDTO;
 import me.ruana.recipeBook.model.Ingredients;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.lang.module.ResolutionException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,10 +26,18 @@ public class IngredientsService {
 
 
     //     МЕТОД, ДЛЯ ВЫЗОВА ФАЙЛА, ХРАНЯЩЕГОСЯ НА ДИСКЕ:
+    @Value("${path.to.data.file}")
+    private String dataFilePath;
+    @Value("${name.of.data.file2}")
+    private String dataFileNameIngredients;
+
     @PostConstruct // считывает файл при запуске приложения. Если файла нет - прлжение не запускается.
     private void foo() {
-        readIngredientFromFile();
+        File file = new File(dataFilePath, dataFileNameIngredients);
+        if (file.exists())
+            readIngredientFromFile();
     }
+
 
     // ДОБАВЛЯЕМ ИНГРДИЕНТ В МАПУ:
     public IngredientsDTO addIngredientToMap(Ingredients ingredient) {
