@@ -10,6 +10,7 @@ import me.ruana.recipeBook.model.Recipe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.lang.module.ResolutionException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,16 +22,18 @@ public class RecipeService {
     private final FileService fileService; // "заинджектили" класс - добавить в конструктор
 
     private final IngredientsService ingredientsService; // создаём для метода получения рецепта по ингредиенту - обязательно создать конструктор!
+
     public RecipeService(FileService fileService, IngredientsService ingredientsService) {
         this.fileService = fileService; // "заинджектили" класс
         this.ingredientsService = ingredientsService;
     }
 
     // МЕТОД, ДЛЯ ВЫЗОВА ФАЙЛА, ХРАНЯЩЕГОСЯ НА ДИСКЕ:
-//    @PostConstruct
-//    private void foo() {
-//        readRecipeFromFile();
-//    }
+    @PostConstruct
+    private void foo() {
+
+        readRecipeFromFile();
+    }
 
     // ДОБАВЛЕНИЕ РЕЦЕПТА:
     public RecipeDTO addRecipeToMap(Recipe recipe) { // добавление рецепта в мапу
@@ -68,7 +71,6 @@ public class RecipeService {
         if (recipe != null) {
             recipeMap.remove(recipeId);
             saveRecipeToFile();
-            //  System.out.println("Рецепт " + recipeId + " " + recipe.getTitle() + " удалён из книги рецептов.");
         } else throw new IllegalArgumentException("Рецепта с таким ID нет!");
         return recipeMap;
     }
@@ -126,12 +128,11 @@ public class RecipeService {
         }
     }
 
-    // СЧИТЫВАИНЕ РЕЦЕПТА ИЗ ФАЙЛА:
+    // СЧИТЫВАНИЕ РЕЦЕПТА ИЗ ФАЙЛА:
     private void readRecipeFromFile() {
         try {
             String json = fileService.readRecipeFromFile();
             recipeMap = new ObjectMapper().readValue(json, new TypeReference<Map<Integer, Recipe>>() {
-
             });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

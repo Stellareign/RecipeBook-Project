@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @JsonIgnoreProperties
 public class RecipeBookApplication {
-public static void main(String[] args){
-	SpringApplication.run(RecipeBookApplication.class, args);} // запуск в базовом виде
+    public static void main(String[] args) {
+        SpringApplication.run(RecipeBookApplication.class, args);
+    } // запуск в базовом виде
 
-	}
+}

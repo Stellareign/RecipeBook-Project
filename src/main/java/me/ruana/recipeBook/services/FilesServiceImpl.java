@@ -41,9 +41,10 @@ public class FilesServiceImpl implements FileService {
             throw new RuntimeException(e);
         }
     }
-@Override
+
+    @Override
     // ОЧИСТКА ФАЙЛА:
-public boolean cleanRecipesDataFile() {
+    public boolean cleanRecipesDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameRecipes);
             Files.deleteIfExists(path); // удалить, если существует
@@ -54,6 +55,7 @@ public boolean cleanRecipesDataFile() {
             return false;
         }
     }
+
     @Override // первый метод
     public File getDataFileRecipes() {
         return new File(dataFilePath, dataFileNameRecipes); //возвращает файл с указанным именем по указанному адресу.
@@ -97,6 +99,7 @@ public boolean cleanRecipesDataFile() {
             return false;
         }
     }
+
     @Override // первый метод
     public File getDataFileIngredients() {
         return new File(dataFilePath, dataFileNameIngredients); //возвращает файл с указанным именем по указанному адресу.

@@ -1,7 +1,5 @@
 package me.ruana.recipeBook.services;
 
-import io.github.classgraph.Resource;
-
 import java.io.File;
 
 public interface FileService {
