@@ -18,6 +18,7 @@ public class RecipeDTO { // файл типа json
     private final List<Ingredients> ingredientsList;
     private final List<String> cookingStepsList;
 
+    // ============== СТАТИЧЕСКАЯ ФАБРИКА СБОРКА DTO: ==============
     public static RecipeDTO from(int id, Recipe recipe) { // "статическая фабрика - создание DTO из заданных "компонентов"
         return new RecipeDTO(id, recipe.getTitle(), recipe.getNumberOfServings(), recipe.getCookingTime(), recipe.getMeasureTime(), recipe.getIngredientsList(),
                 recipe.getCookingStepsList());

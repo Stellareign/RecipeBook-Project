@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ruana.recipeBook.dto.IngredientsDTO;
 import me.ruana.recipeBook.model.Ingredients;
-import me.ruana.recipeBook.services.IngredientsService;
+import me.ruana.recipeBook.services.IngredientsServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +19,9 @@ import java.util.Map;
 @RequestMapping("/ingredients")
 @Tag(name = "Список ингредиентов", description = "Добавление, редактирование, просмотр ингредиентов, удаление ингредиентов из списка.")
 public class IngredientsController {
-    private final IngredientsService ingredientsService;
+    private final IngredientsServiceImpl ingredientsService;
 
-    public IngredientsController(IngredientsService ingredientsService) {
+    public IngredientsController(IngredientsServiceImpl ingredientsService) {
         this.ingredientsService = ingredientsService;
     }
 

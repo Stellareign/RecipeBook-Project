@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ruana.recipeBook.dto.RecipeDTO;
 import me.ruana.recipeBook.model.Recipe;
-import me.ruana.recipeBook.services.RecipeService;
+import me.ruana.recipeBook.services.RecipeServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,18 +21,14 @@ import java.util.List;
 @Tag(name = "Книга рецептов", description = "Операции с рецептами: просмотр, редактирование, добавление, удаление")
 
 public class RecipeController {
-    private final RecipeService recipeService;
+    private final RecipeServiceImpl recipeService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeServiceImpl recipeService) {
         this.recipeService = recipeService;
     }
 
     // ПОЛУЧЕНИЕ РЕЦЕПТА ПО ID:
-//    @GetMapping("/{id}")
-//    public RecipeDTO getRecipe(@PathVariable("id") int id) {
-//        return recipeService.getRecipe(id);
-//    }
-    @GetMapping("/{id}") // переделываем в response:
+    @GetMapping("/{id}") // в контроллере метод должен возвращать response:
     @Operation(summary = "Поиск и просмотр рецепта",
             description = "Поиск рецепта по ID")
     public ResponseEntity<?> getRecipe(@PathVariable("id") int id) {
@@ -41,11 +37,7 @@ public class RecipeController {
     }
 
     // ДОБАВЛЕНИЕ НОВОГО РЕЦЕПТА:
-//    @PostMapping
-//    public RecipeDTO addRecipe(@RequestBody Recipe recipe) {
-//        return recipeService.addRecipeToMap(recipe);
-//    }
-    @PostMapping // переделываем в response:
+    @PostMapping //
     @Operation(summary = "Добавление рецепта",
             description = "Создание и добавление рецепта в книгу рецептов")
     public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
@@ -53,12 +45,8 @@ public class RecipeController {
         return ResponseEntity.ok(recipeDTO);
     }
 
+
     // ПРАВКА РЕЦЕПТА ПО ID:
-//    @PutMapping("/{id}")
-//    public RecipeDTO changeRecipe(@PathVariable("id") int id, @RequestBody Recipe recipe) {
-//        return recipeService.editRecipe(id, recipe);
-//    }
-    // ПРАВКА РЕЦЕПТА ПО ID: переделка на response
     @PutMapping("/{id}")
     @Operation(summary = "Изменение рецепта",
             description = "Поиск рецепта по ID и редактирование найденного рецепта")
@@ -67,12 +55,8 @@ public class RecipeController {
         return ResponseEntity.ok().body(recipeDTO);
     }
 
-    // УДАЛЕНИЕ РЕЦЕПТА ПО ID:
-//    @DeleteMapping("/{id}")
-//    public Map<Integer, Recipe> deleteRecipe(@PathVariable("id") int id) {
-//        return recipeService.deleteRecipe(id);
-//    }
-    @DeleteMapping("/{id}") //переделка на response
+
+    @DeleteMapping("/{id}") //
     @Operation(summary = "Удаление рецепта",
             description = "Поиск рецепта по ID и удаление найденного рецепта")
     @ApiResponses(value = {                                                     // нужно понимание!
@@ -86,12 +70,7 @@ public class RecipeController {
         return ResponseEntity.ok().body(recipesMap);
     }
 
-    // ВСЕ РЕЦЕПТЫ:
-//    @GetMapping
-//    public Map<Integer, Recipe> getRecipeList() {
-//        return recipeService.getRecipeMap();
-//    }
-    @GetMapping//переделка на response
+    @GetMapping//
     @Operation(summary = "Просмотр всех рецептов",
             description = "Выводит список всех рецептов, занесённых в книгу")
     @ApiResponses(value = {                                                     // нужно понимание!
@@ -105,13 +84,13 @@ public class RecipeController {
         return ResponseEntity.ok().body(allRecipesMap);
     }
 
-    //ПОИСК ПО ИНГРЕДИЕНТУ: не рабоатет почему-то.... проверить
+    //ПОИСК ПО ИНГРЕДИЕНТУ: не работает почему-то.... проверить
     @GetMapping("/byIngredient/{id}")
     public ResponseEntity<List<RecipeDTO>> getRecipeByIngredientId(@PathVariable("id") int id) {
         var recipeListByIngredientId = recipeService.getRecipeByIngredientId(id);
         return ResponseEntity.ok().body(recipeListByIngredientId);
     }
-
+// ПОИСК ПО НЕСКЛЬКИМ ИНГРЕДИЕНТАМ
     @GetMapping("/byIngredients")
     public ResponseEntity<List<RecipeDTO>> getRecipesByIngredientsIds(@RequestParam("ids") List<Integer> ids) {
         var recipesListByIngredientsIds = recipeService.getRecipesByIngredientsIds(ids);

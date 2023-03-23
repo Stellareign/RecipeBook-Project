@@ -1,6 +1,9 @@
 package me.ruana.recipeBook.services;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public interface FileService {
 
@@ -9,18 +12,29 @@ public interface FileService {
     boolean saveRecipeToFile(String json);
 
     // ОЧИСТКА ФАЙЛА:
-
     boolean cleanRecipesDataFile();
 
     // первый метод
     File getDataFileRecipes();
 
-    // МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ.
-// ОЧИСТКА И ПЕРЕЗАПИСЬ ФАЙЛА:
-    boolean saveIngredientToFile(String json);
+    // ПРОВЕРКА НАЛИЧИЯ ФАЙЛА С РЕЦЕПТАМИ ПЕРЕД ЗАГРУЗКОЙ:
+    File checkExistsRecipesFile() throws FileNotFoundException;
+
+    // ЗАМЕНА ФАЙЛА С РЕЦЕПТАМИ НА СЕРВЕРЕ:
+    boolean uploadRecipeDataFile(MultipartFile uploadedRecipesFile);
+
 
     //ЧТЕНИЕ ИЗ ФАЙЛА:
     String readRecipeFromFile();
+
+
+    // МЕТОД ДЛЯ РЕЦЕПТОВ НА СЕРВЕР БЕЗ БИБЛИОТЕКИ: КАК РЕШИТЬ ВОПРОС С КОДИРОКОЙ UTF-8?
+    boolean uploadRecipeDataFile2(MultipartFile uploadedRecipesFile2);
+
+    // ======================================МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ: =================================
+// ОЧИСТКА И ПЕРЕЗАПИСЬ ФАЙЛА:
+    boolean saveIngredientsListToFile(String json);
+
 
     //ЧТЕНИЕ ИЗ ФАЙЛА:
     String readIngredientFromFile();
@@ -28,8 +42,12 @@ public interface FileService {
     // ОЧИСТКА ФАЙЛА:
     boolean cleanIngredientsDataFile();
 
-    File getDataFileIngredients(); //
+    // ПОЛУЧЕНИЕ ФАЙЛА С ИНГРЕДИЕНТАМИ:
+    File getDataFileIngredients();
 
-    // второй метод
+    // ЗАМЕНА ФАЙЛА НА СЕРВЕРЕ (пренос из контроллера):
+    boolean uploadIngredientDataFile(MultipartFile uploadedIngredientFile);
 
+    // ПРОВЕРКА НАЛИЧИЯ ФАЙЛА С ИНГРЕДИЕНТАМИ ПЕРЕД ЗАГРУЗКОЙ НА СЕРВЕР:
+    File checkExistsIngredientsFile() throws FileNotFoundException;
 }
