@@ -107,7 +107,7 @@ GET http://localhost:8080/recipe/0
 GET http://localhost:8080/recipe/2
 
 ###
-PUT http://localhost:8080/recipe/0
+PUT http://localhost:8080/recipe/2
 Content-Type: application/json
 
 {
@@ -165,7 +165,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8080/recipe/0
+DELETE http://localhost:8080/recipe/4
 
 ###
 GET http://localhost:8080/recipe

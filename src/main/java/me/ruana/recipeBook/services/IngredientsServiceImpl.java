@@ -86,7 +86,7 @@ public class IngredientsServiceImpl implements IngredientsService {
         if (ingredient != null) {
             ingredientsMap.remove(ingredientId);
             saveIngredientToFile();
-        } else throw new IllegalArgumentException("Указанного ингредиенты нет в списке");
+        } else throw new IllegalArgumentException("Указанного ингредиента нет в списке");
         return ingredientsMap;
     }
 

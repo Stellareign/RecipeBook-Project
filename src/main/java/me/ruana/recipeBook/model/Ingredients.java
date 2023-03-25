@@ -12,4 +12,9 @@ public class Ingredients {
     private String ingredientName;
     private double numberOfIngredients;
     private String measureUnits;
+
+    @Override
+    public String toString() {
+        return ingredientName +  ": " + numberOfIngredients + " " + measureUnits;
+    }
 }

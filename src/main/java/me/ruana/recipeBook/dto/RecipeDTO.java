@@ -12,7 +12,7 @@ import java.util.List;
 public class RecipeDTO { // файл типа json
     private final int id;
     private final String title;
-    private String numberOfServings;
+    private final String numberOfServings;
     private final double cookingTime;
     private final String measureTime;
     private final List<Ingredients> ingredientsList;

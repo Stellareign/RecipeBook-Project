@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
 
 public interface FileService {
 
@@ -50,4 +51,12 @@ public interface FileService {
 
     // ПРОВЕРКА НАЛИЧИЯ ФАЙЛА С ИНГРЕДИЕНТАМИ ПЕРЕД ЗАГРУЗКОЙ НА СЕРВЕР:
     File checkExistsIngredientsFile() throws FileNotFoundException;
+
+    //    @Override // второй метод - не работает :(
+//    public Resource getResource(String fileName) {
+//        Path dataFilesPath = Path.of(dataFilePath); // создаём объект Path из нашей ссылки на директорию для обработки методом resilve()
+//        Path dataPath = dataFilesPath.resolve(fileName + ".json"); // добавляем имя файла и тип к пути к папке
+//        return new FileSystemResource(dataPath); // возвращаем объект типа Resource, который представляет файл
+//    }
+    Path createTempRecipeFile(String temporaryFile);
 }

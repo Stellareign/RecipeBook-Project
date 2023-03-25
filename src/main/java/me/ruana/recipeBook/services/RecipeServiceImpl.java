@@ -12,12 +12,17 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
 import java.lang.module.ResolutionException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class RecipeServiceImpl implements RecipeService{
+public class RecipeServiceImpl implements RecipeService {
     private static int recipeId = 0;
     private static Map<Integer, Recipe> recipeMap = new HashMap<>();
     private final FileService fileService; // "заинджектили" класс - добавить в конструктор
@@ -153,5 +158,19 @@ public class RecipeServiceImpl implements RecipeService{
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+// СОХРАНИТЬ РЕЦЕПТЫ В ТЕКСТОВЫЙ ФАЙЛ:
+    @Override
+    public Path saveRecipesToTxt() throws IOException {
+        Path path = fileService.createTempRecipeFile("temprRecipes"); // задаём путь к временному файлу
+        for (Recipe recipe : recipeMap.values()) { // итерируемся по рецептам в мапе
+            try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+              //  writer.write(recipeId);
+                writer.append((++recipeId) + " " + recipe.toString()); // запись из тустринга класса Recipe, созданного
+                // конструктором StringBuilder с добавлением номера к названию, начиная с 1
+                writer.append("\n"); // каждый объект с новой строки
+            }
+        }
+        return path;
     }
 }

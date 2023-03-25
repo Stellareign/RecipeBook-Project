@@ -94,9 +94,10 @@ public class FilesServiceImpl implements FileService {
             return false;
         }
     }
+
     // МЕТОД ДЛЯ РЕЦЕПТОВ НА СЕРВЕР БЕЗ БИБЛИОТЕКИ: КАК РЕШИТЬ ВОПРОС С КОДИРОКОЙ UTF-8?
     @Override
-    public boolean uploadRecipeDataFile2(MultipartFile uploadedRecipesFile2){
+    public boolean uploadRecipeDataFile2(MultipartFile uploadedRecipesFile2) {
         cleanRecipesDataFile(); // очищаем файл на сервере для перезаписи
         File recipesFile = getDataFileRecipes();
         try (InputStream in = uploadedRecipesFile2.getInputStream(); // из объекта uploadedRecipesFile2 возвращаем поток
@@ -109,10 +110,12 @@ public class FilesServiceImpl implements FileService {
             while ((bytesRead = in.read(buffer)) != -1) { // пока буфер не равен -1 (??) (можно ли указать > -1?)
                 writer.write(new String(buffer, 0, bytesRead, StandardCharsets.UTF_8)); // из объекта writer записываем данные в файл
 
-            } return true;
+            }
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
-        } return false;
+        }
+        return false;
     }
 
     //======================================================== МЕТОДЫ ДЛЯ ИНГРЕДИЕНТОВ: ===================================
@@ -178,12 +181,28 @@ public class FilesServiceImpl implements FileService {
     public File checkExistsIngredientsFile() throws FileNotFoundException {
         File ingredientsFile = getDataFileIngredients();
         if (ingredientsFile.exists()) {// если существует, вернуть
-        } return ingredientsFile;
+        }
+        return ingredientsFile;
     }
-//    @Override // второй метод - не работает :(
+
+    //    @Override // второй метод - не работает :(
 //    public Resource getResource(String fileName) {
 //        Path dataFilesPath = Path.of(dataFilePath); // создаём объект Path из нашей ссылки на директорию для обработки методом resilve()
 //        Path dataPath = dataFilesPath.resolve(fileName + ".json"); // добавляем имя файла и тип к пути к папке
 //        return new FileSystemResource(dataPath); // возвращаем объект типа Resource, который представляет файл
 //    }
+
+
+    // СОЗДАНИЕ ВРЕМЕННОГО ФАЙЛА:
+    @Override
+    public Path createTempRecipeFile(String temporaryFile) {
+        try {
+            return Files.createTempFile(Path.of(dataFilePath), "tempFile", temporaryFile); // создание временно файла
+            // с помощью метода createTempFile класса Files с входным параметром адреса дирректории dataFilePath
+            // (префикс файла `tempFile` и суффикс `temporaryFile)
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

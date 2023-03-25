@@ -3,6 +3,8 @@ package me.ruana.recipeBook.services;
 import me.ruana.recipeBook.dto.RecipeDTO;
 import me.ruana.recipeBook.model.Recipe;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
@@ -33,4 +35,7 @@ public interface RecipeService {
 
     // СЧИТЫВАНИЕ РЕЦЕПТА ИЗ ФАЙЛА:
     void readRecipeFromFile();
+
+    // СОХРАНИТЬ РЕЦЕПТЫ В ТЕКСТОВЫЙ ФАЙЛ:
+    Path saveRecipesToTxt() throws IOException, IOException;
 }
