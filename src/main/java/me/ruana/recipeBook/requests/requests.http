@@ -1,0 +1,219 @@
+GET http://localhost:8080
+
+###
+GET http://localhost:8080/info
+
+<!-- ----------------------------РЕЦЕПТЫ: ----------------------------------->
+
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{
+  "title": "Сырники творожные",
+  "numberOfServings": "4 порции",
+  "cookingTime": 30,
+  "measureTime": "мин.",
+  "ingredientsList": [
+    {
+      "ingredientName": "Куриное яйцо",
+      "numberOfIngredients": 2,
+      "measureUnits": "шт"
+    },
+    {
+      "ingredientName": "Творог",
+      "numberOfIngredients": 350,
+      "measureUnits": "грамм"
+    },
+    {
+      "ingredientName": "Пшеничная мука",
+      "numberOfIngredients": 6,
+      "measureUnits": "ст.л."
+    },
+    {
+      "ingredientName": "Сахар",
+      "numberOfIngredients": 2,
+      "measureUnits": "ст.л."
+    }
+  ],
+  "cookingStepsList": [
+    "1. Смешайте весь творог с яйцами, сахаром и тщательно всё перемешайте.",
+    "2. Всыпьте в творог муку и тщательно перемешайте.",
+    "3. Поставьте сковороду на средний огонь и налейте в нее подсолнечное масло",
+    "4. Слепите несколько небольших шариков из получившейся творожной массы и положите их на тарелку. Затем по очереди обкатывайте творожные шарики в муке и выкладывайте на сковороду.",
+    "5. Обжаривайте сырники 1–2 минуты до появления золотистой корочки. Затем переверните их на другую сторону и также обжарьте до золотистого состояния.",
+    "6. Повторяйте, пока творог не закончится.",
+    "7. Ммм! Приятного аппетита!"
+  ]
+}
+
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{
+  "title": "Салат из красной фасоли с творожным сыром, красным луком и сезонным салатом",
+  "numberOfServings": "",
+  "cookingTime": 7,
+  "measureTime": "мин.",
+  "ingredientsList": [
+    {
+      "ingredientName": "Специи",
+      "numberOfIngredients": null,
+      "measureUnits": "по вкусу"
+    },
+    {
+      "ingredientName": "Консервированная фасоль",
+      "numberOfIngredients": 400,
+      "measureUnits": "грамм"
+    },
+    {
+      "ingredientName": "Лимон",
+      "numberOfIngredients": 1,
+      "measureUnits": "шт"
+    },
+    {
+      "ingredientName": "Оливковое масло",
+      "numberOfIngredients": 50,
+      "measureUnits": "мл"
+    },
+    {
+      "ingredientName": "Руккола",
+      "numberOfIngredients": 100,
+      "measureUnits": "г"
+    },
+    {
+      "ingredientName": "Творожный сыр",
+      "numberOfIngredients": 200,
+      "measureUnits": "г"
+    },
+    {
+      "ingredientName": "Красный лук",
+      "numberOfIngredients": 50,
+      "measureUnits": "г"
+    }
+  ],
+  "cookingStepsList": [
+    "1. Открыть две банки красной фасоли в собственном соку, слить сок и промыть фасоль холодной водой.",
+    "2. Готовую фасоль смешать с мелко нарубленным красным луком, зеленью, давленым чесноком, оливковым маслом, лимонным соком и творожным сыром.",
+    "3. Посолить, поперчить, дать продуктам две минуты притереться друг к другу и подавать к столу."
+  ]
+}
+
+###
+GET http://localhost:8080/recipe/0
+
+###
+GET http://localhost:8080/recipe/2
+
+###
+PUT http://localhost:8080/recipe/2
+Content-Type: application/json
+
+{
+  "title": "Творожные пончики в сахарной пудре",
+  "numberOfServings": "",
+  "cookingTime": 40,
+  "measureTime": "мин.",
+  "ingredientsList": [
+    {
+      "ingredientName": "Куриное яйцо",
+      "numberOfIngredients": 3,
+      "measureUnits": "шт."
+    },
+    {
+      "ingredientName": "Пшеничная мука",
+      "numberOfIngredients": 8,
+      "measureUnits": "ст.л."
+    },
+    {
+      "ingredientName": "Соль",
+      "numberOfIngredients": 0,
+      "measureUnits": "по вкусу"
+    },
+    {
+      "ingredientName": "Сахар",
+      "numberOfIngredients": 0,
+      "measureUnits": "по вкусу"
+    },
+    {
+      "ingredientName": "Оливковое масло",
+      "numberOfIngredients": 0,
+      "measureUnits": "по вкусу"
+    },
+    {
+      "ingredientName": "Сода",
+      "numberOfIngredients": 0.5,
+      "measureUnits": "ч.л."
+    },
+    {
+      "ingredientName": "Сахарная пудра с ванилью",
+      "numberOfIngredients": 0,
+      "measureUnits": "по вкусу"
+    }
+  ],
+  "cookingStepsList": [
+    "1. В миске смешать творог, яйца, муку, сахар, соду и соль до однородной консистенции.",
+    "2. В небольшом сотейнике оливковое масло хорошо разогреть.",
+    "3. При помощи чайной ложки или руками скатать из теста шарики, каждый размером чуть меньше грецкого ореха.",
+    "4. Бросить пончики в кипящее масло и жарить на небольшом огне, постоянно переворачивая шумовкой.",
+    "5. Готовые пончики выложить на бумажное полотенце и оставить на одну-две минуты, чтобы оно впитало лишнее масло. Подавать пончики горячими, выложив на блюдо и посыпав сахарной пудрой, смешанной с ванилином.",
+    "6. Вредно, но очень вкусно!",
+    "7. Приятного аппетита!"
+  ]
+}
+
+###
+
+DELETE http://localhost:8080/recipe/4
+
+###
+GET http://localhost:8080/recipe
+
+###
+GET http://localhost:8080/recipe/byIngredient/0
+
+
+<!-- --------------------------------------- ИНГРЕДИЕНТЫ: ----------------------------------------->
+
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "ingredientName": "Яйцо куриное",
+  "numberOfIngredients": 2,
+  "measureUnits": "шт."
+}
+
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "ingredientName": "Сахарная пудра",
+  "numberOfIngredients": 0.5,
+  "measureUnits": "ч.л."
+}
+
+###
+GET http://localhost:8080/ingredients/3
+
+###
+PUT http://localhost:8080/ingredients/1
+Content-Type: application/json
+
+{
+  "ingredientName": "Соль",
+  "numberOfIngredients": 0.5,
+  "measureUnits": "ч.л."
+}
+
+###
+DELETE http://localhost:8080/ingredients/0
+
+###
+GET http://localhost:8080/ingredients
+
+###
+GET  http://localhost:8080/swagger-ui.html

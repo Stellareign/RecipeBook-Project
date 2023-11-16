@@ -1,0 +1,17 @@
+{
+  "0": {
+    "ingredientName": "Яйцо куриное",
+    "numberOfIngredients": 2.0,
+    "measureUnits": "шт."
+  },
+  "1": {
+    "ingredientName": "Соль",
+    "numberOfIngredients": 0.5,
+    "measureUnits": "ч.л."
+  },
+  "2": {
+    "ingredientName": "Сахарная пудра",
+    "numberOfIngredients": 0.5,
+    "measureUnits": "ч.л."
+  }
+}
